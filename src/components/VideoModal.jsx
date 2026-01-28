@@ -38,7 +38,7 @@ const VideoModal = ({ isOpen, onClose }) => {
             gsap.to(overlayRef.current, { opacity: 1, duration: 0.3, ease: 'power2.out' });
             gsap.fromTo(modalRef.current,
                 { scale: 0.9, opacity: 0 },
-                { scale: 1, opacity: 1, duration: 0.4, ease: 'back.out(1.7)', delay: 0.1 }
+                { scale: 1, opacity: 1, duration: 0.4, ease: 'back.out(1.7)' }
             );
         } else {
             // Animate out
@@ -87,8 +87,7 @@ const VideoModal = ({ isOpen, onClose }) => {
                     {pageLoaded && isOpen && (
                         <div className="w-full h-full">
                             <iframe
-                                src="https://iframe.mediadelivery.net/embed/588303/1e79e76e-1ba4-4572-b7c1-cf5ea20be16c?autoplay=true&loop=false&muted=false&preload=true"
-                                loading="lazy"
+                                src="https://iframe.mediadelivery.net/embed/588303/1e79e76e-1ba4-4572-b7c1-cf5ea20be16c?autoplay=1&loop=false&muted=false&preload=true"
                                 style={{ border: 0, position: 'absolute', top: 0, height: '100%', width: '100%' }}
                                 allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
                                 allowFullScreen={true}
