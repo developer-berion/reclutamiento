@@ -1,0 +1,28 @@
+# Project Context: Financie IUL Landing
+
+## Business Objective
+Create a high-conversion landing page for **Financie Group** to promote IUL (Indexed Universal Life) insurance policies. The design must feel professional, trustworthy, and premium.
+
+## Core Rules & Design System
+- **Tone**: Professional, Educational, Personal.
+- **Colors**: 
+  - `Primary`: #f6c71e (Yellow - Trust/Energy)
+  - `Deep Teal`: #19272b (Dark background)
+  - `Text`: #414042 (Gray)
+- **Typography**: 
+  - `Sora`: Headings/Display.
+  - `DM Sans`: Body text.
+- **Animations**: Subtle, purposeful GSAP animations. Smooth scroll for navigation.
+
+## Key Implementation Details
+- **Calendly**: Integrated via `react-calendly` inside a GSAP-animated modal.
+- **Logos Carousel**: Infinite horizontal scroll using GSAP, with auto-pause on hover.
+- **Light Mode Only**: The application is locked to light mode for brand consistency.
+- **No Contact Form**: Leads are captured directly via Calendly scheduling.
+
+## Assets
+- Logo: `/logo-financiegroup.png`
+- Insurer Logos: `/public/seguros/`
+
+## Deployment
+Static hosting. Ensure all relative paths work for production builds.
