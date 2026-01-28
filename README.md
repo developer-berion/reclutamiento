@@ -45,13 +45,15 @@ El proyecto está configurado con `base: '/reclutamiento/'` en `vite.config.js`.
     npm run build
     ```
 2.  Subir el contenido de la carpeta `dist/` al directorio `/reclutamiento` en el File Manager de Hostinger.
-3.  **Importante**: Asegurarse de habilitar el **CDN** en el hPanel para una carga óptima del video.
 
 ## 🎥 Gestión de Video
 
-El video principal se encuentra en `public/reclutamiento.mp4`.
-- **Formato**: MP4 (H.264)
-- **Carga**: Se utiliza `preload="auto"` para aprovechar el streaming por rangos (Range Requests) del servidor/CDN.
+El video principal está integrado mediante **Bunny Stream** para garantizar una reproducción fluida y de alta calidad (4K/HD adaptativo).
+
+- **Proveedor**: Bunny.net (Bunny Stream).
+- **ID de Video**: `1e79e76e-1ba4-4572-b7c1-cf5ea20be16c`.
+- **Autoplay**: El video se reproduce automáticamente al abrir el modal para una experiencia de usuario inmediata.
+- **Protección**: Se recomienda configurar "Allowed Origins" en el panel de Bunny Stream para restringir la reproducción a `financiegroup.com`.
 
 ---
 © 2024 Financie Group. Todos los derechos reservados.
