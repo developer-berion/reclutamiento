@@ -20,7 +20,7 @@ const QueEs = () => {
                         <div className="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center mb-6">
                             <span className="material-icons-round text-primary text-3xl">handshake</span>
                         </div>
-                        <h3 className="text-xl font-bold mb-4">Acceso Ilimitado</h3>
+                        <h3 className="text-xl font-bold mb-4">Variedad de aseguradoras y productos</h3>
                         <p className="text-gray-500 dark:text-gray-400">Acceso a más de 57 aseguradoras Top-Rated. Ofrece siempre la solución correcta para tu cliente, no el único producto que tiene la agencia.</p>
                     </div>
                     <div className="bg-white dark:bg-gray-900 p-8 rounded-[32px] shadow-xl border border-divider dark:border-gray-800 hover:border-primary transition-colors">
