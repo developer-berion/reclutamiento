@@ -93,14 +93,11 @@ const VideoModal = ({ isOpen, onClose }) => {
                     {pageLoaded && isPlaying && (
                         <div className="w-full h-full">
                             <iframe
-                                width="100%"
-                                height="100%"
-                                src="https://www.youtube.com/embed/rOrBHvxoBCc?autoplay=1&modestbranding=1&rel=0&fs=1&vq=hd1080"
-                                title="Financie Group Video"
-                                frameBorder="0"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                allowFullScreen
-                                className="w-full h-full"
+                                src="https://iframe.mediadelivery.net/embed/588303/1e79e76e-1ba4-4572-b7c1-cf5ea20be16c?autoplay=true&loop=false&muted=false&preload=true"
+                                loading="lazy"
+                                style={{ border: 0, position: 'absolute', top: 0, height: '100%', width: '100%' }}
+                                allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
+                                allowFullScreen={true}
                             ></iframe>
                         </div>
                     )}
