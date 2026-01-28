@@ -23,6 +23,8 @@ Create a high-conversion landing page for **Financie Group** to promote IUL (Ind
 ## Assets
 - Logo: `/logo-financiegroup.png`
 - Insurer Logos: `/public/seguros/`
+- Video Thumbnail: `/public/thumb3.png`
+- Video Player: Hosted on Bunny Stream (integrated via iframe)
 
 ## Deployment
 Static hosting. Ensure all relative paths work for production builds.

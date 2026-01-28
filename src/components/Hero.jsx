@@ -33,7 +33,7 @@ const Hero = ({ onOpenModal, onOpenCalendly }) => {
                 {/* Video Placeholder */}
                 <div
                     className="hero-video w-full max-w-4xl aspect-video bg-gray-900 rounded-3xl overflow-hidden shadow-2xl border border-white/10 group cursor-pointer relative mb-12 bg-cover bg-center"
-                    style={{ backgroundImage: `url("${import.meta.env.BASE_URL}thumb.png")` }}
+                    style={{ backgroundImage: `url("${import.meta.env.BASE_URL}thumb3.png")` }}
                     onClick={onOpenModal}
                 >
                     <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-all flex items-center justify-center">
