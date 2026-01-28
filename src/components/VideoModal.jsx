@@ -9,8 +9,6 @@ const VideoModal = ({ isOpen, onClose }) => {
 
     // State to track if the page has fully loaded
     const [pageLoaded, setPageLoaded] = useState(false);
-    // State to track current playback status for UI toggling
-    const [isPlaying, setIsPlaying] = useState(false);
 
     // 1. Wait for page load before allowing video to be in DOM
     useEffect(() => {
@@ -26,11 +24,9 @@ const VideoModal = ({ isOpen, onClose }) => {
         return () => window.removeEventListener('load', handleLoad);
     }, []);
 
-    // 2. Handle Modal Play/Pause Logic
+    // 2. Handle Modal logic
     useEffect(() => {
-        if (!isOpen) {
-            setIsPlaying(false);
-        }
+        // No extra logic needed for now, but keeping for future enhancements
     }, [isOpen]);
 
     // GSAP Animations
@@ -51,9 +47,7 @@ const VideoModal = ({ isOpen, onClose }) => {
         }
     }, { dependencies: [isOpen], scope: container });
 
-    const handlePlayClick = () => {
-        setIsPlaying(true);
-    };
+
 
     return (
         <div
@@ -89,8 +83,8 @@ const VideoModal = ({ isOpen, onClose }) => {
 
                 {/* Video Player Container */}
                 <div className="w-full h-full relative bg-black">
-                    {/* Render Video only after page load */}
-                    {pageLoaded && isPlaying && (
+                    {/* Render Video only after page load and when modal is open */}
+                    {pageLoaded && isOpen && (
                         <div className="w-full h-full">
                             <iframe
                                 src="https://iframe.mediadelivery.net/embed/588303/1e79e76e-1ba4-4572-b7c1-cf5ea20be16c?autoplay=true&loop=false&muted=false&preload=true"
@@ -99,25 +93,6 @@ const VideoModal = ({ isOpen, onClose }) => {
                                 allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
                                 allowFullScreen={true}
                             ></iframe>
-                        </div>
-                    )}
-
-                    {/* Custom Thumbnail & Play Button Overlay */}
-                    {/* Exclude this overlay if video is playing */}
-                    {!isPlaying && (
-                        <div
-                            className="absolute inset-0 z-10 bg-cover bg-center cursor-pointer group"
-                            style={{ backgroundImage: `url("${import.meta.env.BASE_URL}thumb.png")` }}
-                            onClick={handlePlayClick}
-                        >
-                            <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-all flex items-center justify-center">
-                                {/* Play Button Circle */}
-                                <div className="w-20 h-20 bg-primary/20 rounded-full flex items-center justify-center backdrop-blur-sm group-hover:scale-110 transition-transform duration-300">
-                                    <div className="w-14 h-14 bg-primary rounded-full flex items-center justify-center shadow-lg">
-                                        <span className="material-icons-round text-deep-teal text-3xl ml-1">play_arrow</span>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     )}
                 </div>
