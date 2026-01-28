@@ -1,5 +1,4 @@
 import { useRef, useState, useEffect } from 'react';
-import ReactPlayer from 'react-player';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 
@@ -91,30 +90,18 @@ const VideoModal = ({ isOpen, onClose }) => {
                 {/* Video Player Container */}
                 <div className="w-full h-full relative bg-black">
                     {/* Render Video only after page load */}
-                    {pageLoaded && (
+                    {pageLoaded && isPlaying && (
                         <div className="w-full h-full">
-                            <ReactPlayer
-                                url="https://www.youtube.com/watch?v=rOrBHvxoBCc"
-                                playing={isPlaying}
-                                controls={true}
+                            <iframe
                                 width="100%"
                                 height="100%"
-                                config={{
-                                    youtube: {
-                                        playerVars: {
-                                            modestbranding: 1,
-                                            rel: 0,
-                                            fs: 1,
-                                            iv_load_policy: 3,
-                                            autohide: 1,
-                                            vq: 'hd1080'
-                                        }
-                                    }
-                                }}
-                                onPause={() => setIsPlaying(false)}
-                                onPlay={() => setIsPlaying(true)}
-                                onEnded={() => setIsPlaying(false)}
-                            />
+                                src="https://www.youtube.com/embed/rOrBHvxoBCc?autoplay=1&modestbranding=1&rel=0&fs=1&vq=hd1080"
+                                title="Financie Group Video"
+                                frameBorder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                allowFullScreen
+                                className="w-full h-full"
+                            ></iframe>
                         </div>
                     )}
 
