@@ -38,13 +38,13 @@ Esta es la landing page oficial de Reclutamiento para **Financie Group / Experio
 
 ## 🚢 Despliegue (Hostinger)
 
-El proyecto está configurado con `base: '/reclutamiento/'` en `vite.config.js`.
+El proyecto está configurado con `base: '/agentes/'` en `vite.config.js`.
 
 1.  Ejecutar build:
     ```bash
     npm run build
     ```
-2.  Subir el contenido de la carpeta `dist/` al directorio `/reclutamiento` en el File Manager de Hostinger.
+2.  Subir el contenido de la carpeta `dist/` al directorio `/agentes` en el File Manager de Hostinger.
 
 ## 🎥 Gestión de Video
 
