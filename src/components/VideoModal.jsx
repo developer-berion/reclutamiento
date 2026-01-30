@@ -312,7 +312,7 @@ const VideoModal = ({ isOpen, onClose }) => {
                 {/* Lead Form */}
                 {isOpen && showForm && (
                     <div className="absolute inset-0 z-30 bg-gray-900/95 flex items-center justify-center p-4 backdrop-blur-xl">
-                        <div className="w-[95%] max-w-2xl bg-gray-800 rounded-[30px] md:rounded-[40px] shadow-2xl border border-white/5 p-6 md:p-10 max-h-[90vh] overflow-y-auto custom-scrollbar">
+                        <div className="w-full max-w-lg bg-gray-800 rounded-[30px] shadow-2xl border border-white/5 p-8 max-h-[90vh] overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none']">
                             <h3 className="text-2xl md:text-3xl font-display font-bold text-white mb-2 text-center">
                                 ¡Estás a un paso!
                             </h3>
