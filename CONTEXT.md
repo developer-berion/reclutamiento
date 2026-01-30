@@ -27,7 +27,9 @@ Create a high-conversion landing page for **Financie Group** to promote IUL (Ind
   - `video_started_at`: Timestamp when video modal opens.
   - `video_max_watched_seconds`: Max playhead position reached (debounced updates).
   - `video_duration_seconds`: Total video length.
-- **Security**: RLS Policies enabled for public Insert/Update on specific lead rows.
+- **Security**: 
+  - RLS Policies enabled for public Insert/Update on specific lead rows.
+  - **Bot Protection**: Google ReCAPTCHA v2 (Checkbox) integrated on the lead form to prevent spam.
 
 ## Assets
 - Logo: `/logo-financiegroup.png`

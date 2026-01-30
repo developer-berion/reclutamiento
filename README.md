@@ -18,6 +18,7 @@ Esta es la landing page oficial de Reclutamiento para **Financie Group / Experio
 - **GSAP** (Animaciones)
 - **Lucide React** (Iconografía)
 - **Supabase** (Lead Tracking & Video Analytics)
+- **Google ReCAPTCHA v2** (Security)
 
 ## 📦 Instalación y Desarrollo
 
