@@ -289,7 +289,7 @@ const VideoModal = ({ isOpen, onClose }) => {
 
             <div
                 ref={modalRef}
-                className="relative w-full max-w-[90%] md:max-w-[80%] aspect-video bg-black rounded-3xl overflow-hidden shadow-[0_0_50px_rgba(0,0,0,0.5)] border border-white/10 opacity-0 transform-gpu"
+                className="relative w-full max-w-[90%] md:max-w-[80%] h-[670px] md:h-auto md:aspect-video bg-black rounded-3xl overflow-hidden shadow-[0_0_50px_rgba(0,0,0,0.5)] border border-white/10 opacity-0 transform-gpu"
             >
                 {/* Yellow Close Button - Delayed & High Contrast */}
                 {showCloseButton && (
