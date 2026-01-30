@@ -1,6 +1,7 @@
 import { useRef, useState, useEffect } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
+import ReCAPTCHA from 'react-google-recaptcha';
 import { supabase } from '../lib/supabase';
 
 const VideoModal = ({ isOpen, onClose }) => {
@@ -19,6 +20,7 @@ const VideoModal = ({ isOpen, onClose }) => {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [formData, setFormData] = useState({ name: '', email: '', phone: '' });
     const [errors, setErrors] = useState({});
+    const [captchaToken, setCaptchaToken] = useState(null);
 
     // 3. Page Load Effect
     useEffect(() => {
@@ -181,8 +183,19 @@ const VideoModal = ({ isOpen, onClose }) => {
             newErrors.phone = 'Ingresa un número válido de 10 dígitos (EE.UU.)';
         }
 
+        if (!captchaToken) {
+            newErrors.captcha = 'Por favor, confirma que no eres un robot';
+        }
+
         setErrors(newErrors);
         return Object.keys(newErrors).length === 0;
+    };
+
+    const handleCaptchaChange = (token) => {
+        setCaptchaToken(token);
+        if (errors.captcha) {
+            setErrors(prev => ({ ...prev, captcha: null }));
+        }
     };
 
     const handleSubmit = async (e) => {
@@ -299,60 +312,69 @@ const VideoModal = ({ isOpen, onClose }) => {
                 {/* Lead Form */}
                 {isOpen && showForm && (
                     <div className="absolute inset-0 z-30 bg-gray-900/95 flex items-center justify-center p-4 backdrop-blur-xl">
-                        <div className="w-full max-w-md p-10 bg-gray-800 rounded-[40px] shadow-2xl border border-white/5">
-                            <h3 className="text-3xl font-display font-bold text-white mb-2 text-center">
+                        <div className="w-[95%] max-w-2xl bg-gray-800 rounded-[30px] md:rounded-[40px] shadow-2xl border border-white/5 p-6 md:p-10 max-h-[90vh] overflow-y-auto custom-scrollbar">
+                            <h3 className="text-2xl md:text-3xl font-display font-bold text-white mb-2 text-center">
                                 ¡Estás a un paso!
                             </h3>
-                            <p className="text-gray-400 text-center mb-8 text-base">
+                            <p className="text-gray-400 text-center mb-6 md:mb-8 text-sm md:text-base">
                                 Completa tus datos para ver el video exclusivo.
                             </p>
 
-                            <form onSubmit={handleSubmit} className="space-y-5">
+                            <form onSubmit={handleSubmit} className="space-y-4 md:space-y-5">
                                 <div>
-                                    <label className="block text-sm font-bold text-gray-400 mb-2 uppercase tracking-widest pl-1">Nombre Completo</label>
+                                    <label className="block text-xs md:text-sm font-bold text-gray-400 mb-2 uppercase tracking-widest pl-1">Nombre Completo</label>
                                     <input
                                         type="text"
                                         name="name"
                                         value={formData.name}
                                         onChange={handleInputChange}
-                                        className={`w-full bg-gray-700/50 border-2 ${errors.name ? 'border-red-500' : 'border-transparent'} rounded-2xl px-5 py-4 text-white placeholder-gray-500 focus:outline-none focus:border-primary transition-all`}
+                                        className={`w-full bg-gray-700/50 border-2 ${errors.name ? 'border-red-500' : 'border-transparent'} rounded-xl md:rounded-2xl px-4 py-3 md:px-5 md:py-4 text-white placeholder-gray-500 focus:outline-none focus:border-primary transition-all text-sm md:text-base`}
                                         placeholder="Tu nombre"
                                     />
                                     {errors.name && <p className="text-red-500 text-xs mt-1 pl-1 font-bold">{errors.name}</p>}
                                 </div>
 
                                 <div>
-                                    <label className="block text-sm font-bold text-gray-400 mb-2 uppercase tracking-widest pl-1">Correo Electrónico</label>
+                                    <label className="block text-xs md:text-sm font-bold text-gray-400 mb-2 uppercase tracking-widest pl-1">Correo Electrónico</label>
                                     <input
                                         type="email"
                                         name="email"
                                         value={formData.email}
                                         onChange={handleInputChange}
-                                        className={`w-full bg-gray-700/50 border-2 ${errors.email ? 'border-red-500' : 'border-transparent'} rounded-2xl px-5 py-4 text-white placeholder-gray-500 focus:outline-none focus:border-primary transition-all`}
+                                        className={`w-full bg-gray-700/50 border-2 ${errors.email ? 'border-red-500' : 'border-transparent'} rounded-xl md:rounded-2xl px-4 py-3 md:px-5 md:py-4 text-white placeholder-gray-500 focus:outline-none focus:border-primary transition-all text-sm md:text-base`}
                                         placeholder="tucorreo@ejemplo.com"
                                     />
                                     {errors.email && <p className="text-red-500 text-xs mt-1 pl-1 font-bold">{errors.email}</p>}
                                 </div>
 
                                 <div>
-                                    <label className="block text-sm font-bold text-gray-400 mb-2 uppercase tracking-widest pl-1">Teléfono (EE.UU.)</label>
+                                    <label className="block text-xs md:text-sm font-bold text-gray-400 mb-2 uppercase tracking-widest pl-1">Teléfono (EE.UU.)</label>
                                     <input
                                         type="tel"
                                         name="phone"
                                         value={formData.phone}
                                         onChange={handleInputChange}
-                                        className={`w-full bg-gray-700/50 border-2 ${errors.phone ? 'border-red-500' : 'border-transparent'} rounded-2xl px-5 py-4 text-white placeholder-gray-500 focus:outline-none focus:border-primary transition-all`}
+                                        className={`w-full bg-gray-700/50 border-2 ${errors.phone ? 'border-red-500' : 'border-transparent'} rounded-xl md:rounded-2xl px-4 py-3 md:px-5 md:py-4 text-white placeholder-gray-500 focus:outline-none focus:border-primary transition-all text-sm md:text-base`}
                                         placeholder="(555) 123-4567"
                                     />
                                     {errors.phone && <p className="text-red-500 text-xs mt-1 pl-1 font-bold">{errors.phone}</p>}
                                 </div>
+
+                                <div className="flex justify-center my-4 scale-90 md:scale-100 origin-center">
+                                    <ReCAPTCHA
+                                        sitekey="6LcqZFssAAAAADiffR9uQAmuRttqYMw5azgGO5P6"
+                                        onChange={handleCaptchaChange}
+                                        theme="dark"
+                                    />
+                                </div>
+                                {errors.captcha && <p className="text-red-500 text-xs text-center font-bold">{errors.captcha}</p>}
 
                                 {errors.submit && <p className="text-red-500 text-xs mt-2 text-center font-bold">{errors.submit}</p>}
 
                                 <button
                                     type="submit"
                                     disabled={isSubmitting}
-                                    className={`w-full bg-primary text-deep-teal font-black text-lg py-5 rounded-full shadow-[0_15px_30px_rgba(246,199,30,0.3)] hover:scale-[1.03] transition-all transform active:scale-95 mt-6 uppercase tracking-wider ${isSubmitting ? 'opacity-70 cursor-not-allowed' : ''}`}
+                                    className={`w-full bg-primary text-deep-teal font-black text-base md:text-lg py-4 md:py-5 rounded-full shadow-[0_15px_30px_rgba(246,199,30,0.3)] hover:scale-[1.03] transition-all transform active:scale-95 mt-4 md:mt-6 uppercase tracking-wider ${isSubmitting ? 'opacity-70 cursor-not-allowed' : ''}`}
                                 >
                                     {isSubmitting ? 'ENVIANDO...' : 'CONTINUAR'}
                                 </button>
