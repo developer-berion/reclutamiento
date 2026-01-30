@@ -19,7 +19,7 @@ const Beneficios = () => {
                                 <div className="w-12 h-12 bg-deep-teal dark:bg-primary text-white dark:text-deep-teal rounded-xl flex items-center justify-center">
                                     <span className="material-icons-round">health_and_safety</span>
                                 </div>
-                                <h4 class="font-bold">Planes de Salud y Medicare</h4>
+                                <h4 className="font-bold">Planes de Salud y Medicare</h4>
                                 <p className="text-sm text-gray-500">Ofrece ACA/Obamacare. Para Medicare, si no tienes licencia, gana comisiones a través de nuestro programa de referidos.</p>
                             </div>
                             <div className="space-y-4">

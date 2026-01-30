@@ -58,7 +58,10 @@ function App() {
 
       <VideoModal
         isOpen={isVideoOpen}
-        onClose={() => setIsVideoOpen(false)}
+        onClose={() => {
+          setIsVideoOpen(false);
+          setIsCalendlyOpen(true);
+        }}
       />
     </div>
   );

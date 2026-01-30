@@ -20,6 +20,15 @@ Create a high-conversion landing page for **Financie Group** to promote IUL (Ind
 - **Light Mode Only**: The application is locked to light mode for brand consistency.
 - **No Contact Form**: Leads are captured directly via Calendly scheduling.
 
+## Video & Lead Tracking
+- **Backend**: Supabase (`agentes` table).
+- **Player Integration**: Uses standard **PlayerJS** library to track Bunny Stream iframe events.
+- **Metrics Tracked**:
+  - `video_started_at`: Timestamp when video modal opens.
+  - `video_max_watched_seconds`: Max playhead position reached (debounced updates).
+  - `video_duration_seconds`: Total video length.
+- **Security**: RLS Policies enabled for public Insert/Update on specific lead rows.
+
 ## Assets
 - Logo: `/logo-financiegroup.png`
 - Insurer Logos: `/public/seguros/`

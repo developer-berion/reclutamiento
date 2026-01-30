@@ -17,6 +17,7 @@ Esta es la landing page oficial de Reclutamiento para **Financie Group / Experio
 - **TailwindCSS** (Estilos)
 - **GSAP** (Animaciones)
 - **Lucide React** (Iconografía)
+- **Supabase** (Lead Tracking & Video Analytics)
 
 ## 📦 Instalación y Desarrollo
 
@@ -51,7 +52,7 @@ El proyecto está configurado con `base: '/agentes/'` en `vite.config.js`.
 El video principal está integrado mediante **Bunny Stream** para garantizar una reproducción fluida y de alta calidad (4K/HD adaptativo).
 
 - **Proveedor**: Bunny.net (Bunny Stream).
-- **ID de Video**: `1e79e76e-1ba4-4572-b7c1-cf5ea20be16c`.
+- **ID de Video**: `d446a809-2d35-4965-bc2e-425945f457db`.
 - **Autoplay**: El video se reproduce automáticamente al abrir el modal para una experiencia de usuario inmediata.
 - **Protección**: Se recomienda configurar "Allowed Origins" en el panel de Bunny Stream para restringir la reproducción a `financiegroup.com`.
 
