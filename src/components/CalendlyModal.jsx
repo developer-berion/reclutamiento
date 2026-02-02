@@ -58,6 +58,7 @@ const CalendlyModal = ({ isOpen, onClose }) => {
     };
 
     // Retrieve prefill data
+    // Retrieve prefill data
     const prefill = React.useMemo(() => {
         const savedData = sessionStorage.getItem('leadData');
         if (!savedData) return {};

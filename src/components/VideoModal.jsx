@@ -18,7 +18,7 @@ const VideoModal = ({ isOpen, onClose }) => {
     const [showForm, setShowForm] = useState(true);
     const [showCloseButton, setShowCloseButton] = useState(false);
     const [isSubmitting, setIsSubmitting] = useState(false);
-    const [formData, setFormData] = useState({ name: '', email: '', phone: '' });
+    const [formData, setFormData] = useState({ name: '', email: '' });
     const [errors, setErrors] = useState({});
     const [captchaToken, setCaptchaToken] = useState(null);
 
@@ -176,12 +176,7 @@ const VideoModal = ({ isOpen, onClose }) => {
             newErrors.email = 'Correo inválido';
         }
 
-        const phoneDigits = formData.phone.replace(/\D/g, '');
-        if (!formData.phone.trim()) {
-            newErrors.phone = 'El teléfono es obligatorio';
-        } else if (phoneDigits.length !== 10) {
-            newErrors.phone = 'Ingresa un número válido de 10 dígitos (EE.UU.)';
-        }
+
 
         if (!captchaToken) {
             newErrors.captcha = 'Por favor, confirma que no eres un robot';
@@ -208,8 +203,7 @@ const VideoModal = ({ isOpen, onClose }) => {
                     .insert([
                         {
                             full_name: formData.name,
-                            email: formData.email,
-                            phone_number: formData.phone
+                            email: formData.email
                         }
                     ])
                     .select(); // Return the inserted row to get ID
@@ -219,8 +213,11 @@ const VideoModal = ({ isOpen, onClose }) => {
                 const newId = data[0]?.id;
                 setAgentId(newId);
 
+                // Update formData to include code before saving to session
+                const dataToSave = { ...formData };
+
                 sessionStorage.setItem('leadSubmitted', 'true');
-                sessionStorage.setItem('leadData', JSON.stringify(formData));
+                sessionStorage.setItem('leadData', JSON.stringify(dataToSave));
                 if (newId) sessionStorage.setItem('agentId', newId);
 
                 setShowForm(false);
@@ -347,18 +344,7 @@ const VideoModal = ({ isOpen, onClose }) => {
                                     {errors.email && <p className="text-red-500 text-xs mt-1 pl-1 font-bold">{errors.email}</p>}
                                 </div>
 
-                                <div>
-                                    <label className="block text-xs md:text-sm font-bold text-gray-400 mb-2 uppercase tracking-widest pl-1">Teléfono (EE.UU.)</label>
-                                    <input
-                                        type="tel"
-                                        name="phone"
-                                        value={formData.phone}
-                                        onChange={handleInputChange}
-                                        className={`w-full bg-gray-700/50 border-2 ${errors.phone ? 'border-red-500' : 'border-transparent'} rounded-xl md:rounded-2xl px-4 py-3 md:px-5 md:py-4 text-white placeholder-gray-500 focus:outline-none focus:border-primary transition-all text-sm md:text-base`}
-                                        placeholder="(555) 123-4567"
-                                    />
-                                    {errors.phone && <p className="text-red-500 text-xs mt-1 pl-1 font-bold">{errors.phone}</p>}
-                                </div>
+
 
                                 <div className="flex justify-center my-4 scale-90 md:scale-100 origin-center">
                                     <ReCAPTCHA
