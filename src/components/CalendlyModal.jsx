@@ -74,14 +74,7 @@ const CalendlyModal = ({ isOpen, onClose }) => {
                 email: data.email,
                 firstName: firstName,
                 lastName: lastName,
-                name: data.name, // Full name fallback
-                // Prefill for custom phone field and SMS reminders
-                smsReminderNumber: data.phone,
-                customAnswers: {
-                    a1: data.phone,
-                    a2: data.phone,
-                    a3: data.phone
-                }
+                name: data.name // Full name fallback
             };
         } catch (e) {
             console.error('Error parsing lead data:', e);
