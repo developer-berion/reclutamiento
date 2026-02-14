@@ -18,7 +18,7 @@ const VideoModal = ({ isOpen, onClose }) => {
     const [showForm, setShowForm] = useState(true);
     const [showCloseButton, setShowCloseButton] = useState(false);
     const [isSubmitting, setIsSubmitting] = useState(false);
-    const [formData, setFormData] = useState({ name: '', email: '' });
+    const [formData, setFormData] = useState({ name: '', email: '', phone: '' });
     const [errors, setErrors] = useState({});
     const [captchaToken, setCaptchaToken] = useState(null);
 
@@ -124,7 +124,7 @@ const VideoModal = ({ isOpen, onClose }) => {
                         });
 
                         // Try to ensure it plays
-                        // player.play();
+                        player.play();
                     });
                 } catch (e) {
                     console.warn('VideoModal: PlayerJS init failed, retrying...', e);
@@ -171,9 +171,15 @@ const VideoModal = ({ isOpen, onClose }) => {
         if (!formData.name.trim()) newErrors.name = 'El nombre es obligatorio';
 
         if (!formData.email.trim()) {
-            newErrors.email = 'El correo es obligatorio';
-        } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-            newErrors.email = 'Correo inválido';
+            newErrors.email = 'El email es obligatorio';
+        } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+            newErrors.email = 'Ingresa un email válido';
+        }
+
+        if (!formData.phone.trim()) {
+            newErrors.phone = 'El teléfono es obligatorio';
+        } else if (formData.phone.length < 10) {
+            newErrors.phone = 'Ingresa un número válido';
         }
 
 
@@ -203,7 +209,8 @@ const VideoModal = ({ isOpen, onClose }) => {
                     .insert([
                         {
                             full_name: formData.name,
-                            email: formData.email
+                            email: formData.email,
+                            phone_number: formData.phone
                         }
                     ])
                     .select(); // Return the inserted row to get ID
@@ -332,19 +339,32 @@ const VideoModal = ({ isOpen, onClose }) => {
                                 </div>
 
                                 <div>
-                                    <label className="block text-xs md:text-sm font-bold text-gray-400 mb-2 uppercase tracking-widest pl-1">Correo Electrónico</label>
+                                    <label className="block text-xs md:text-sm font-bold text-gray-400 mb-2 uppercase tracking-widest pl-1">Email</label>
                                     <input
                                         type="email"
                                         name="email"
                                         value={formData.email}
                                         onChange={handleInputChange}
                                         className={`w-full bg-gray-700/50 border-2 ${errors.email ? 'border-red-500' : 'border-transparent'} rounded-xl md:rounded-2xl px-4 py-3 md:px-5 md:py-4 text-white placeholder-gray-500 focus:outline-none focus:border-primary transition-all text-sm md:text-base`}
-                                        placeholder="tucorreo@ejemplo.com"
+                                        placeholder="tu@email.com"
                                     />
                                     {errors.email && <p className="text-red-500 text-xs mt-1 pl-1 font-bold">{errors.email}</p>}
                                 </div>
 
 
+
+                                <div>
+                                    <label className="block text-xs md:text-sm font-bold text-gray-400 mb-2 uppercase tracking-widest pl-1">Teléfono</label>
+                                    <input
+                                        type="tel"
+                                        name="phone"
+                                        value={formData.phone}
+                                        onChange={handleInputChange}
+                                        className={`w-full bg-gray-700/50 border-2 ${errors.phone ? 'border-red-500' : 'border-transparent'} rounded-xl md:rounded-2xl px-4 py-3 md:px-5 md:py-4 text-white placeholder-gray-500 focus:outline-none focus:border-primary transition-all text-sm md:text-base`}
+                                        placeholder="+1 (555) 000-0000"
+                                    />
+                                    {errors.phone && <p className="text-red-500 text-xs mt-1 pl-1 font-bold">{errors.phone}</p>}
+                                </div>
 
                                 <div className="flex justify-center my-4 scale-90 md:scale-100 origin-center">
                                     <ReCAPTCHA

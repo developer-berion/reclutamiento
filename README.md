@@ -5,6 +5,8 @@ Esta es la landing page oficial de Reclutamiento para **Financie Group / Experio
 ## 🚀 Características
 
 - **Enfoque en Reclutamiento**: Mensajes clave sobre libertad, propiedad (vesting) y crecimiento.
+- **Captura de Leads**: Formulario inicial optimizado (Nombre y Teléfono) para desbloquear contenido exclusivo.
+- **Integración Calendly**: Agenda de entrevistas automatizada y sincronizada con el CRM.
 - **Comparativa Interactiva**: Tabla "Experior vs. Agencia Tradicional".
 - **Video Hero**: Integración de video principal con optimización de carga (CDN Friendly).
 - **FAQ**: Sección de preguntas frecuentes para agentes.
@@ -17,8 +19,8 @@ Esta es la landing page oficial de Reclutamiento para **Financie Group / Experio
 - **TailwindCSS** (Estilos)
 - **GSAP** (Animaciones)
 - **Lucide React** (Iconografía)
-- **Supabase** (Lead Tracking & Video Analytics)
-- **Google ReCAPTCHA v2** (Security)
+- **Supabase** (Base de Datos & Analytics)
+- **Google ReCAPTCHA v2** (Seguridad anti-bot)
 
 ## 📦 Instalación y Desarrollo
 

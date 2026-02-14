@@ -15,27 +15,30 @@ Create a high-conversion landing page for **Financie Group** to promote IUL (Ind
 - **Animations**: Subtle, purposeful GSAP animations. Smooth scroll for navigation.
 
 ## Key Implementation Details
-- **Calendly**: Integrated via `react-calendly` inside a GSAP-animated modal.
-- **Logos Carousel**: Infinite horizontal scroll using GSAP, with auto-pause on hover.
-- **Light Mode Only**: The application is locked to light mode for brand consistency.
-- **No Contact Form**: Leads are captured directly via Calendly scheduling.
+- **Lead Capture (Video Gate)**: 
+  - Users must enter **Name**, **Email** and **Phone Number** to unlock the exclusive video.
+  - Form validation ensures a valid email and a 10-digit phone number.
+- **Calendly Integration**: 
+  - Integrated via `react-calendly`.
+  - Opens automatically after the video modal is closed, or manually via "Agendar Entrevista" buttons.
+  - Uses a verified Personal Access Token (PAT) stored in Supabase `app_settings`.
+- **Logos Carousel**: Infinite horizontal scroll using GSAP.
+- **Light Mode Only**: The application is locked to light mode.
 
-## Video & Lead Tracking
-- **Backend**: Supabase (`agentes` table).
-- **Player Integration**: Uses standard **PlayerJS** library to track Bunny Stream iframe events.
-- **Metrics Tracked**:
-  - `video_started_at`: Timestamp when video modal opens.
-  - `video_max_watched_seconds`: Max playhead position reached (debounced updates).
-  - `video_duration_seconds`: Total video length.
-- **Security**: 
-  - RLS Policies enabled for public Insert/Update on specific lead rows.
-  - **Bot Protection**: Google ReCAPTCHA v2 (Checkbox) integrated on the lead form to prevent spam.
+## Backend & Data
+- **Supabase**: 
+  - **Table**: `agentes`
+  - **Columns**: `id`, `full_name`, `email` (Required), `phone_number` (Required), `video_started_at`, `video_max_watched_seconds`, `video_duration_seconds`.
+  - **Security**: RLS Policies enabled. Google ReCAPTCHA v2 protects the submission form.
+
+## Video Tracking
+- **Player**: Bunny Stream (iframe) with PlayerJS.
+- **Metrics**: Tracks start time, max watched duration, and total duration to gauge lead interest.
 
 ## Assets
 - Logo: `/logo-financiegroup.png`
 - Insurer Logos: `/public/seguros/`
 - Video Thumbnail: `/public/thumb3.png`
-- Video Player: Hosted on Bunny Stream (integrated via iframe)
 
 ## Deployment
-Static hosting. Ensure all relative paths work for production builds.
+Static hosting (e.g., Vercel/Netlify). The build command `npm run build` generates the production assets in `dist/`.
